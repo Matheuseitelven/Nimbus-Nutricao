@@ -1,0 +1,20 @@
+.bp5-label {
+  font-weight: bold;
+  font-size: 12px;
+}
+
+.bp5-input {
+  border-radius: 5px;
+  border: 1px solid #adadad;
+  box-shadow: none;
+  padding: 8px;
+}
+
+.title-login{
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.css-4bojcr-MuiInputBase-root-MuiOutlinedInput-root{
+  height: 35px;
+}

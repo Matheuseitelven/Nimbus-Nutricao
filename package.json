@@ -1,8 +1,14 @@
 {
-  "name": "biblioteca",
+  "name": "nutri",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@blueprintjs/core": "^5.13.1",
+    "@emotion/react": "^11.13.3",
+    "@emotion/styled": "^11.13.0",
+    "@mui/icons-material": "^6.1.4",
+    "@mui/material": "^6.1.4",
+    "@mui/x-date-pickers": "^7.21.0",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
@@ -10,10 +16,17 @@
     "@types/node": "^16.18.114",
     "@types/react": "^18.3.11",
     "@types/react-dom": "^18.3.1",
+    "axios": "^1.7.7",
+    "dayjs": "^1.11.13",
+    "moment": "^2.30.1",
+    "mui-tel-input": "^8.0.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
+    "react-router-dom": "^6.27.0",
     "react-scripts": "5.0.1",
+    "react-toastify": "^10.0.6",
     "typescript": "^4.9.5",
+    "universal-cookie": "^8.0.1",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
