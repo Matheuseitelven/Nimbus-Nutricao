@@ -1,6 +1,6 @@
 import { FormGroup, InputGroup } from '@blueprintjs/core';
 import { Button, IconButton } from '@mui/material';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { LoginStore } from '../../store/login/LoginStore';
 import { toast } from 'react-toastify';
 
@@ -9,6 +9,12 @@ const Login = () => {
     email: "",
     senha: "",
   });
+
+  useEffect(() => {
+
+    localStorage.clear()
+
+  }, []);
 
   const handleAcessar = async () => {
 

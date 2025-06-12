@@ -20,7 +20,7 @@ import { toast } from 'react-toastify';
 const dayjs = require('dayjs')
 
 interface Book {
-  _id: string;
+  id: string;
   paciente_id: string
   data_consulta: Date
   dieta: string
@@ -40,7 +40,7 @@ const Consultas = () => {
   const [openCreate, setOpenCreate] = React.useState(false);
   const [openInfo, setOpenInfo] = React.useState(false);
   const [consulta, setConsulta] = useState({
-    _id: "",
+    id: "",
     paciente_id: "",
     dieta: "",
     data_consulta: dayjs(new Date()),
@@ -66,7 +66,7 @@ const Consultas = () => {
   const handleClickOpenCreate = () => {
 
     setConsulta({
-      _id: "",
+      id: "",
       paciente_id: "",
       dieta: "",
       finalizada: false,
@@ -130,7 +130,7 @@ const Consultas = () => {
 
     setOpenEdit(false);
 
-    let resp = await ConsultaStore.atualizarConsulta(consulta._id, params);
+    let resp = await ConsultaStore.atualizarConsulta(consulta.id, params);
 
     if (resp) {
 
@@ -180,7 +180,7 @@ const Consultas = () => {
 
     if (resp) {
 
-      const updatedBooks = consultas.filter((consulta: Book) => consulta._id !== id);
+      const updatedBooks = consultas.filter((consulta: Book) => consulta.id !== id);
       setConsultas(updatedBooks);
 
     }
@@ -226,7 +226,7 @@ const Consultas = () => {
     let produtoOptions: any = [];
 
     produtoOptions = pacientes?.map((value: any) => {
-      return <MenuItem key={value._id} value={value._id}>{value.nome}</MenuItem>
+      return <MenuItem key={value.id} value={value.id}>{value.nome}</MenuItem>
     });
 
     return produtoOptions
@@ -235,7 +235,7 @@ const Consultas = () => {
 
   const formatterPaciente = (id: string) => {
   
-    let paciente: any = pacientes.find((value: any) => value._id == id)
+    let paciente: any = pacientes.find((value: any) => value.id == id)
   
     if(!paciente){
       return ""
@@ -286,7 +286,7 @@ const Consultas = () => {
           <TableBody>
             {consultas.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row: Book) => (
               <TableRow
-                key={row._id}
+                key={row.id}
                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
               >
                 <TableCell component="th" scope="row">{formatterPaciente(row.paciente_id)}</TableCell>
@@ -294,7 +294,7 @@ const Consultas = () => {
                 <TableCell>{moment(row.data_consulta).format("DD/MM/YYYY HH:mm")}</TableCell>
                 <TableCell>{row.finalizada ? "Finalizada" : "Pendente"}</TableCell>
                 <TableCell align="center">{formatEdit(row)}</TableCell>
-                <TableCell align="center">{formatExcluir(row._id)}</TableCell>
+                <TableCell align="center">{formatExcluir(row.id)}</TableCell>
               </TableRow>
             ))}
           </TableBody>

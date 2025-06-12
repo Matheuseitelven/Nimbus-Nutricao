@@ -14,7 +14,7 @@ import { useNavigate } from "react-router-dom";
 import { toast } from 'react-toastify';
 
 interface Book {
-  _id: string;
+  id: string;
   nome: string
   idade: string
   sexo: string
@@ -32,7 +32,7 @@ const Paciente = () => {
   const [openCreate, setOpenCreate] = React.useState(false);
   const [openInfo, setOpenInfo] = React.useState(false);
   const [paciente, setPaciente] = useState({
-    _id: "",
+    id: "",
     nome: "",
     observacao: "",
     idade: "",
@@ -56,7 +56,7 @@ const Paciente = () => {
 
   const handleClickOpenCreate = () => {
     setPaciente({
-      _id: "",
+      id: "",
       nome: "",
       observacao: "",
       idade: "",
@@ -124,7 +124,7 @@ const Paciente = () => {
 
     setOpenEdit(false);
 
-    let resp = await PacienteStore.atualizarPaciente(paciente._id, params);
+    let resp = await PacienteStore.atualizarPaciente(paciente.id, params);
 
     if (resp) {
 
@@ -165,7 +165,7 @@ const Paciente = () => {
 
     if (resp) {
 
-      const updatedBooks = pacientes.filter((paciente: Book) => paciente._id !== id);
+      const updatedBooks = pacientes.filter((paciente: Book) => paciente.id !== id);
       setPacientes(updatedBooks);
 
     }
@@ -195,13 +195,13 @@ const Paciente = () => {
 
   const handleCreateAcesso = async (row: Book) => {
 
-    if(!paciente.email) return toast.error("Campo e-mail obrigatório.");
-    if(!paciente.senha) return toast.error("Campo senha obrigatório.");
+    if(!row.email) return toast.error("Campo e-mail obrigatório.");
+    if(!row.senha) return toast.error("Campo senha obrigatório.");
 
     const params = {
-      paciente_id: row._id,
-      email: paciente.email,
-      senha: paciente.senha
+      paciente_id: row.id,
+      email: row.email,
+      senha: row.senha
     }
 
     await PacienteStore.createAcesso(params);
@@ -218,7 +218,7 @@ const Paciente = () => {
 
     return (<>
       <img style={{ cursor: "pointer", marginRight: 20 }} src='/images/acess.png' width={20} onClick={() => handleCreateAcesso(row)} />
-      <img style={{ cursor: "pointer" }} src='/images/bin.png' width={20} onClick={() => handleRemoveAcesso(row._id)} />
+      <img style={{ cursor: "pointer" }} src='/images/bin.png' width={20} onClick={() => handleRemoveAcesso(row.id)} />
     </>)
 
   }
@@ -232,7 +232,7 @@ const Paciente = () => {
   const formatHistoricos = (row: Book) => {
 
     return (<>
-      <img style={{ cursor: "pointer", marginRight: 20 }} src='/images/history.png' width={20} onClick={() => handleHistorico(row._id)} />
+      <img style={{ cursor: "pointer", marginRight: 20 }} src='/images/history.png' width={20} onClick={() => handleHistorico(row.id)} />
     </>)
 
   }
@@ -279,7 +279,7 @@ const Paciente = () => {
           <TableBody>
             {pacientes.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row: Book) => (
               <TableRow
-                key={row._id}
+                key={row.id}
                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
               >
                 <TableCell component="th" scope="row">{row.nome}</TableCell>
@@ -288,7 +288,7 @@ const Paciente = () => {
                 <TableCell align="center">{formatAcesso(row)}</TableCell>
                 <TableCell align="center">{formatHistoricos(row)}</TableCell>
                 <TableCell align="center">{formatEdit(row)}</TableCell>
-                <TableCell align="center">{formatExcluir(row._id)}</TableCell>
+                <TableCell align="center">{formatExcluir(row.id)}</TableCell>
               </TableRow>
             ))}
           </TableBody>

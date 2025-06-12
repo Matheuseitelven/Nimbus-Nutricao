@@ -1,5 +1,6 @@
 import axios from "axios";
 import { toast } from "react-toastify";
+import api_admin from "../../apiAdmin";
 
 export class _PacienteStore {
 
@@ -7,7 +8,7 @@ export class _PacienteStore {
 
     try {
 
-      let resp = await toast.promise(axios.get("http://localhost:3001/api/pacientes/?&page=1"), {
+      let resp = await toast.promise(api_admin.get("/pacientes/?&page=1"), {
         pending: 'Buscando pacientes...',
         error: 'Nehum resultado encontrado!'
       })
@@ -28,7 +29,7 @@ export class _PacienteStore {
 
     try {
 
-      let resp = await toast.promise(axios.delete(`http://localhost:3001/api/paciente/${id}`), {
+      let resp = await toast.promise(api_admin.delete(`/paciente/${id}`), {
         pending: 'Excluindo paciente...',
         success: 'Paciente excluido com sucesso!',
         error: 'Não foi possível excluir o paciente!'
@@ -50,7 +51,7 @@ export class _PacienteStore {
 
     try {
 
-      let resp = await toast.promise(axios.post(`http://localhost:3001/api/paciente`, data), {
+      let resp = await toast.promise(api_admin.post(`/paciente`, data), {
         pending: 'Criando paciente...',
         success: 'Paciente criado com sucesso!',
         error: 'Não foi possível criar o paciente!'
@@ -72,7 +73,7 @@ export class _PacienteStore {
 
     try {
 
-      let resp = await toast.promise(axios.put(`http://localhost:3001/api/paciente/${id}`, data), {
+      let resp = await toast.promise(api_admin.put(`/paciente/${id}`, data), {
         pending: 'Atualizando paciente...',
         success: 'Paciente atualizado com sucesso!',
         error: 'Não foi possível atualizar o paciente!'
@@ -94,7 +95,7 @@ export class _PacienteStore {
 
     try {
 
-      let resp = await toast.promise(axios.post(`http://localhost:3001/api/acesso`, data), {
+      let resp = await toast.promise(api_admin.post(`/acesso`, data), {
         pending: 'Criando acesso...',
         success: 'Acesso criado com sucesso!',
         error: 'Não foi possível criar o acesso!'
@@ -116,7 +117,7 @@ export class _PacienteStore {
 
     try {
 
-      let resp = await toast.promise(axios.delete(`http://localhost:3001/api/acesso/${id}`), {
+      let resp = await toast.promise(api_admin.delete(`/acesso/${id}`), {
         pending: 'Excluindo acesso...',
         success: 'Acesso excluido com sucesso!',
         error: 'Não foi possível excluir o acesso!'

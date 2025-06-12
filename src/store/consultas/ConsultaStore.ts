@@ -1,5 +1,6 @@
 import axios from "axios";
 import { toast } from "react-toastify";
+import api_admin from "../../apiAdmin";
 
 export class _ConsultaStore {
 
@@ -7,7 +8,7 @@ export class _ConsultaStore {
 
     try {
 
-      let resp = await toast.promise(axios.get("http://localhost:3001/api/consultas/?&page=1"), {
+      let resp = await toast.promise(api_admin.get("/consultas/?&page=1"), {
         pending: 'Buscando consultas...',
         error: 'Nehum resultado encontrado!'
       })
@@ -28,7 +29,7 @@ export class _ConsultaStore {
 
     try {
 
-      let resp = await toast.promise(axios.delete(`http://localhost:3001/api/consulta/${id}`), {
+      let resp = await toast.promise(api_admin.delete(`/consulta/${id}`), {
         pending: 'Excluindo consulta...',
         success: 'Consulta excluido com sucesso!',
         error: 'Não foi possível excluir o consulta!'
@@ -50,7 +51,7 @@ export class _ConsultaStore {
 
     try {
 
-      let resp = await toast.promise(axios.post(`http://localhost:3001/api/consulta`, data), {
+      let resp = await toast.promise(api_admin.post(`/consulta`, data), {
         pending: 'Criando consulta...',
         success: 'Consulta criada com sucesso!',
         error: 'Não foi possível criar a consulta!'
@@ -72,7 +73,7 @@ export class _ConsultaStore {
 
     try {
 
-      let resp = await toast.promise(axios.put(`http://localhost:3001/api/consulta/${id}`, data), {
+      let resp = await toast.promise(api_admin.put(`/consulta/${id}`, data), {
         pending: 'Atualizando consulta...',
         success: 'Consulta atualizado com sucesso!',
         error: 'Não foi possível atualizar a consulta!'

@@ -1,5 +1,6 @@
 import axios from "axios";
 import { toast } from "react-toastify";
+import api from "../../api";
 
 export class _HistoricoStore {
 
@@ -7,7 +8,7 @@ export class _HistoricoStore {
 
     try {
 
-      let resp = await toast.promise(axios.get(`http://localhost:3001/api/historicos/${id}`), {
+      let resp = await toast.promise(api.get(`/historicos/${id}`), {
         pending: 'Buscando históricos...',
         error: 'Nehum resultado encontrado!'
       })

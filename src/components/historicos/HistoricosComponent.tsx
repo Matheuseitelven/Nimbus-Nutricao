@@ -20,7 +20,7 @@ import { PacienteStore } from '../../store/paciente/PacienteStore';
 const dayjs = require('dayjs')
 
 interface Book {
-  _id: string;
+  id: string;
   nome: string
   data_consulta: Date
   dieta: string
@@ -38,7 +38,7 @@ const Historicos = () => {
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
   const [openEdit, setOpenEdit] = React.useState(false);
   const [consulta, setConsulta] = useState({
-    _id: "",
+    id: "",
     nome: "",
     dieta: "",
     data_consulta: dayjs(new Date()),
@@ -88,7 +88,7 @@ const Historicos = () => {
   useEffect(() => {
 
     fetchHistoricos();
-    fetchBooks();
+    // fetchBooks();
 
   }, []);
 
@@ -103,18 +103,6 @@ const Historicos = () => {
   const formatEdit = (row: Book) => {
 
     return <img style={{ cursor: "pointer" }} src='/images/view.png' width={20} onClick={() => handleClickOpenEdit(row)} />
-
-  }
-
-  const formatterPaciente = (id: string) => {
-  
-    let paciente: any = pacientes.find((value: any) => value._id == id)
-  
-    if(!paciente){
-      return ""
-    }
-
-    return paciente.nome
 
   }
 
@@ -155,10 +143,10 @@ const Historicos = () => {
           <TableBody>
             {consultas.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row: Book) => (
               <TableRow
-                key={row._id}
+                key={row.id}
                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
               >
-                <TableCell component="th" scope="row">{formatterPaciente(row.paciente_id)}</TableCell>
+                <TableCell component="th" scope="row">{row.nome}</TableCell>
                 <TableCell>{moment(row.data_consulta).format("DD/MM/YYYY HH:mm")}</TableCell>
                 <TableCell>{row.finalizada ? "Finalizada" : "Pendente"}</TableCell>
                 <TableCell align="center">{formatEdit(row)}</TableCell>
@@ -190,7 +178,7 @@ const Historicos = () => {
 
           {/* Select com a consulta dos pacientes */}
           <FormGroup labelInfo="*" label="Nome" style={{ marginTop: 10 }}>
-            <InputGroup disabled value={formatterPaciente(consulta.paciente_id)} style={{ width: "100%" }} />
+            <InputGroup disabled value={consulta.nome} style={{ width: "100%" }} />
           </FormGroup>
 
           <FormGroup labelInfo="*" label="Data Consulta" style={{ marginTop: 10 }}>

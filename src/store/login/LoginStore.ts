@@ -17,13 +17,14 @@ export class _LoginStore {
 
       let resp = await toast.promise(axios.post(`http://localhost:3001/api/login`, params), {})
 
-      if (resp.status == 200 && resp.data) {
+      if (resp.data.ok) {
 
           resp.data.logged = true
 
-          let token = resp.data
+          cookies.set('nutri-t-L', {user: resp.data.user, admin: resp.data.admin, paciente_id: resp.data.id, logged: true }, { path: '/' });
 
-          cookies.set('nutri-t-L', token, { path: '/' });
+          localStorage.setItem('token', resp.data.token);
+          localStorage.setItem('tokenAdmin', resp.data.tokenAdmin);
 
           if(resp.data.admin){
 
@@ -37,7 +38,7 @@ export class _LoginStore {
 
       } else {
         
-        toast.error("E-mail ou senha inválida!")
+        toast.error(resp.data.error)
 
       }
 
