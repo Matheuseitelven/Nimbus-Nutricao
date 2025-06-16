@@ -10,7 +10,7 @@ module.exports = {
         paciente_id: null,
         email: 'admin@admin.com',
         admin: true,
-        senha: await bcrypt.hash("1234678", 10),
+        senha: await bcrypt.hash("12345678", 10),
         createdAt: new Date(),
         updatedAt: new Date()
       }
