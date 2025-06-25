@@ -1,3 +1,15 @@
+Olá,
+
+Primeiro passo, instalar o mysql, o link para a instalação está abaixo:
+https://dev.mysql.com/downloads/installer/
+![image](https://github.com/user-attachments/assets/1efcc864-e47e-45ec-aae4-e1fac2745da5).
+
+
+
+
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
