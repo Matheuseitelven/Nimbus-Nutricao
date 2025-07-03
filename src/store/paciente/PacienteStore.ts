@@ -57,7 +57,7 @@ export class _PacienteStore {
         error: 'Não foi possível criar o paciente!'
       })
 
-      if (resp.status == 200) {
+      if (resp.data.ok) {
 
         return true
 
