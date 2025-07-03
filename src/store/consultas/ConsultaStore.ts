@@ -57,7 +57,7 @@ export class _ConsultaStore {
         error: 'Não foi possível criar a consulta!'
       })
 
-      if (resp.status == 200) {
+      if (resp.data.ok) {
 
         return true
 
